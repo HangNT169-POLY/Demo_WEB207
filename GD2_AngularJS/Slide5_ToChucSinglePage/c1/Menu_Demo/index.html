@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app="demo_routing">
+    <nav ng-include="'layout/menu.html'"></nav>
+    <!-- ng-include: nhung 1 file html vao .Huu ich khi su dung 1 view cho nhieu file khac nhau -->
+    <div ng-view></div>
+    <script src="../../c1/js/angular-1.8.2/angular.min.js"></script>
+    <script src="../../c1/js/angular-1.8.2/angular-route.js"></script>
+
+    <script src="controller/BlueController.js"></script>
+    <script src="controller/RedController.js"></script>
+    <script src="controller/GreenController.js"></script>
+    <script>
+      const app = angular.module("demo_routing", ["ngRoute"]);
+      app.config(function ($routeProvider, $locationProvider) {
+        $locationProvider.hashPrefix("");
+        $routeProvider
+          .when("/home", {
+            templateUrl: "pages/blue.html",
+            controller: "blueController",
+          })
+          .when("/about", {
+            templateUrl: "pages/red.html",
+            controller: "redController",
+          })
+          .when("/contact", {
+            templateUrl: "pages/green.html",
+            controller: "greenController",
+          })
+          .otherwise({
+            redirectTo: "/",
+          });
+      });
+
+      app.controller("blueController", blueController);
+      app.controller("redController", redController);
+      app.controller("greenController", greenController);
+    </script>
+  </body>
+</html>

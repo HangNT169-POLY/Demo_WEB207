@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        1. Khai niem directive
+        - Directive: La 1 tinh nang cua angular js. Giup xay dung cac the mo rong cho html
+        - Cac directive co san: ng-tenDirective
+        - 1 vai loai da hoc:
+           + Lien quan toi application: ng-app(dinh nghia vung pham vi cua ung dung),
+            ng-controller: khai bao 1 controller trong view
+           + forms: ng-pattern, ng-minlength.... => validate form
+           + template: ng-csp,ng-of,ng-repeat,ng-inclue,ng-hide.... => loop
+           + operation: ng-change,ng-click... => sk giong jquery 
+           + binding du lieu: ng-bind, ng-model....
+        - Cac directive chinh: 
+           + ng-app: Khoi tao ung dung, 
+           + ng-init: Khoi tao du lieu cho ung dung( giong controller), 
+           + ng-model: gan ket du lieu tu model vao controller bat ki
+        2. Cac loai:
+        - Xay dung san
+        - Tu dinh nghia: Phai tuan theo quy tac. Dinh nghia trong file rieng
+     -->
+    <!-- // Khong muon dinh nghia trong controller thi dinh nghia trong init -->
+    <div ng-controller="myController" ng-init="DemoMessage='Welcome to Hang'">
+      <div>{{DemoMessage}}</div>
+      <div welcome-text></div>
+    </div>
+    <div>{{DemoMessage}}</div>
+
+    <script src="../../js/angular-1.8.2/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

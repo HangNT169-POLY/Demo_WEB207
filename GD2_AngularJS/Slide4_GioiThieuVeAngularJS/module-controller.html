@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- Angular JS 
+    4 mục: Module và cách tạo 1 module 
+           Khái niẹm về controller và cách tạo controller
+           Cách đăng ký 1 controller vs 1 module
+           Cách sử dụng module trong ứng dụng
+    - moduel: la 1 cai container : thung chua cac thanh phan 
+    khac nhau trong ung dung nhu filters,
+    - controllers, sẻvices, diẻctives. ( Main của ứng dụng winform...)
+    - Cach tạo: var myApp = angular.module("myModule",[])
+    - Gom 2 thanh phan: ten module va ds cac di phu thuoc vao
+    - controller: la 1 ham js. Tac dung la xay dung len model de view hien thi
+    - Cach tao: myApp.controller("myController",myController);
+    - Tao doi tuong va bing ra view
+
+     -->
+  <body ng-controller="myController">
+    <!-- <div ng-controller="myController">{{message}}</div> -->
+
+    <!-- <div>{{message}}</div> -->
+    <!-- // Khong the lay duoc vi k co ng-controller.  -->
+    <!-- Muon goi dc thi ng-controller phai co trong the body -->
+    <div ng-controller="myController"> 
+    <div>
+      FirstName : {{employee.firstName}}
+      <br />
+      LastName : {{employee.lastName}}
+      <br />
+      Gener : {{employee.gender}}
+    </div> 
+    <!-- Two way binding -->
+    <div>
+    <!-- De sua truc tiep. Khi sua thi modal thay doi  -->
+    <!-- ng-model: dung diẻcted nên k cần {{}} -->
+    FirstName : <input type="text" ng-model="employee.firstName" />
+      <br />
+      LastName : <input type="text" ng-model="employee.lastName" />
+      <br />
+      Gener : <input type="text" ng-model="employee.gender" />
+    </div>
+    <!-- https://viblo.asia/p/kieu-du-lieu-trong-javascript-L4x5xLXg5BM -->
+    <!-- Number
+    Boolean
+    String
+    Null
+    Undefined
+    Object -->
+    <div ng-controller ="myController">
+      <input type="text" ng-model="number1"/>
+      <input type="text" ng-model="number2"/>
+      <button ng-click="hello();">hihihi</button>
+      {{sum}}
+    </div>
+    <div ng-controller ="myController">
+      <p>{{info[0]}}</p>
+      <p>{{info[1]}}</p>
+    </div>
+    <!-- Cac loi thuong gap:
+    -ten employee phai la ten o phia sau $scope
+    - Sai controller 
+     -->
+    <!-- <script src="./../js/angular-1.8.2/angular.min.js"></script> -->
+    <!-- // Khong cho doc loi luon phai click vao. Muon xem loi luon thi dung ban angular.js  -->
+    <script src="./../js/angular-1.8.2/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- https://viblo.asia/p/single-page-application-voi-ngroute-cua-angularjs-PaLGDmBnelX -->
+  <!-- 
+    1. Lý thuyết
+    - Các ứng dụng hiện nay dần phổ biến dùng single page application.
+    - Để sử dụng được SPA trong angular js thì dùng ngRoute.
+    - SPA là 1 trang web hay 1 ứng dụng web mà khi tất cả những 
+    thao tác xử lý đều được diễn ra trên 1 trang duy nhất
+    Với các trang web truyền thống, khi user request 1 trang web 
+    thì server sẽ tính toán và trả về trang web đó dưới dạng mã HTML
+     và hầu như không có bất kỳ sự liên kết nào giữa 2 yêu cầu gần 
+     nhau. Do đó khi có nhiều yêu cầu được đưa ra thì quá trình tính 
+     toán sẽ diễn ra lâu hơn. Và trả về 1 trang web hoàn trỉnh.
+    Còn với SPA thì khi user request lần đầu thì server sẽ tính toàn 
+    và trả về trang web dưới dạng HTML. tuy nhiên ở những lần yêu cầu 
+    tiếp theo thì client chỉ phải request nhưng phần nào 1 cần (AJAX) 
+    và server sẽ sẽ trả dữ liệu với dạng JSON sẽ giúp ngắn thời gian 
+    truyền tải. Hay nói cách khác SPA chỉ load phần trang cần thiết.
+    Hiện nay có có khá nhiều framework sử dụng SPA như AnguarJS, 
+    BackBonJS, SailJS.
+    ở bài này mình xin trình bày SPA trên framwork AngularJS
+    Trong AngularJS cung cấp cho bạn 1 module là ngRoute. 
+    ngRoute sẽ cung cấp các routing, deep linking và các 
+    directives cho các ứng dụng angularJS.
+    Để sử dụng ngRoute chúng ta cần include nó trong file html
+    <script src="angular-route.js">
+    Sau đó khai báo ngRoute là module trong angular application
+    angular.module('myApp', ['ngRoute']);
+    ngView directive ngView directive bao gồm các template 
+    đã được rendered của route hiện tại vào trong file layout chính.
+     mỗi lần thay đổi route hiện tại thì view đi cùng với nó cũng 
+     thay đổi để phù hợp với $route service
+    Trong angular bạn cần phải định nghĩa ngView directive 1 lần 
+    (đây là phần lưu giữ các views và lưu ý trong SPA thì 
+    ngView directive chỉ được sử dụng 1 lần duy nhất.)
+   -->
+  <body ng-app="demo_routing">
+    <ul>
+      <li><a href="#1">Blue</a></li>
+      <li><a href="#2">Red</a></li>
+      <li><a href="#3">Green</a></li>
+    </ul>
+    <!-- @ng-view đặt chỗ cho các template giao diện hiển thị khi có yêu cầu 1 tuyến nào đó.
+       Nói đơn giản nó là giữ chỗ. Nhạp template giao diện vào view. 
+       Ví dụ menu là chung cho tất cả các page chi khác ở dưới => đặt chỗ ở dưới menu -->
+    <div ng-view></div>
+    <script src="../../js/angular-1.8.2/angular.min.js"></script>
+    <script src="../../js/angular-1.8.2/angular-route.js"></script>
+
+    <script>
+      const app = angular.module("demo_routing", ["ngRoute"]);
+      //  Như đoạn code trên $routeProvider sử dụng phương thức
+      // $routeProvider.when()
+      // để truyền 1 URL với 1 view. Trong khi đó phương thức
+      // $routeProvider.otherwise() sẽ trả lại 1 view khi url
+      //hiện tại không khớp với bất kỳ các URL nào đc đưa ra.
+      // Nó như dạng if else vậy.
+
+      // Đi sâu vào hàm $routeProvider ta có hàm when()
+      //chúng bao gồm 2 tham số là :
+      //  route path và 1 object JavaScript when(path, route)
+      //  1, path: có dạng string nó là địa chỉ url có thể chứa
+      //các tham số. Các tham số được lưu trong $routeParams.
+
+      // 2, route: là 1 object JavaScript bao gồm teamplateURL
+      //và template. ở bài trước khi mình đề cập về các directive
+      // trong AngularJS mình có trình bài về teamplateURL
+      //và teamplate rồi.
+
+      // Hiểu 1 cách đơn giản thì teamplateURL là 1 đường dẫn
+      //or 1 function dẫn tới 1 file HTML.
+      app.config(function ($routeProvider, $locationProvider) {
+        $locationProvider.hashPrefix("");
+        $routeProvider
+          .when("/1", {
+            template: `<h1>hihihi</h1>`,
+            // templateUrl: "pages/blue.html",
+          })
+          .when("/2", {
+            templateUrl: "pages/red.html",
+          })
+          .when("/3", {
+            templateUrl: "pages/green.html",
+          })
+          .otherwise({
+            redirectTo: "/",
+          });
+      });
+    </script>
+  </body>
+</html>
